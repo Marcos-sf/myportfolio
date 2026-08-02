@@ -26,13 +26,7 @@ export default function Footer() {
           <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.1rem' }}>
             I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
           </p>
-          <a href="mailto:nitinkh27@gmail.com" style={{
-            display: 'inline-block', padding: '0.8rem 2rem', background: 'linear-gradient(135deg, var(--accent-light), var(--accent-blue))',
-            color: '#000', fontWeight: 600, fontFamily: 'var(--font-heading)', borderRadius: '30px', transition: 'transform 0.2s'
-          }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >Say Hello</a>
+          <a href="mailto:nitinkh27@gmail.com" className="btn-primary">Say Hello</a>
         </motion.div>
 
         <motion.div 

@@ -22,20 +22,8 @@ export default function Hero() {
             I build modern, scalable web applications with a focus on seamless user experiences, premium design, and robust backend architectures.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="#documents" style={{
-              display: 'inline-block', padding: '0.8rem 2rem', background: 'linear-gradient(135deg, var(--accent-light), var(--accent-blue))',
-              color: '#000', fontWeight: 600, fontFamily: 'var(--font-heading)', borderRadius: '30px', transition: 'transform 0.2s'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >View My Work</a>
-            <a href="#education" style={{
-               display: 'inline-block', padding: '0.8rem 2rem', background: 'transparent', border: '1px solid var(--text-secondary)',
-               color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-heading)', borderRadius: '30px', transition: 'all 0.2s'
-            }}
-            onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = 'var(--text-primary)' }}
-            onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'var(--text-secondary)' }}
-            >My Journey</a>
+            <a href="#projects" className="btn-primary">View My Work</a>
+            <a href="#education" className="btn-outline">My Journey</a>
           </div>
         </motion.div>
         

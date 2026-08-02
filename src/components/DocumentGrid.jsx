@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, ScrollText, Award, X } from 'lucide-react';
 
@@ -34,6 +34,30 @@ const documents = [
 
 export default function DocumentGrid() {
   const [selectedDoc, setSelectedDoc] = useState(null);
+  const closeButtonRef = useRef(null);
+  const previouslyFocused = useRef(null);
+
+  useEffect(() => {
+    if (!selectedDoc) return;
+
+    previouslyFocused.current = document.activeElement;
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedDoc(null);
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        closeButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previouslyFocused.current?.focus();
+    };
+  }, [selectedDoc]);
 
   return (
     <section id="documents" style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
@@ -79,32 +103,18 @@ export default function DocumentGrid() {
             </div>
             <div style={{ marginTop: 'auto', display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
               {doc.link && (
-                <button 
+                <button
                   onClick={() => setSelectedDoc(doc)}
-                  style={{
-                    display: 'inline-block', padding: '0.6rem 1.5rem',
-                    border: '1px solid var(--accent-light)', color: 'var(--accent-light)',
-                    borderRadius: '20px', fontSize: '0.9rem', fontWeight: 500, transition: 'all 0.2s',
-                    background: 'transparent', cursor: 'pointer'
-                  }}
-                  onMouseOver={(e) => { e.currentTarget.style.background = 'var(--accent-light)'; e.currentTarget.style.color = '#000'; }}
-                  onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--accent-light)'; }}
+                  className="btn-sm btn-sm-accent"
                 >
                   View PDF
                 </button>
               )}
               {doc.links && doc.links.map((linkItem, i) => (
-                <button 
+                <button
                   key={i}
                   onClick={() => setSelectedDoc({ title: `${doc.title} - ${linkItem.label}`, link: linkItem.url })}
-                  style={{
-                    display: 'inline-block', padding: '0.6rem 1.2rem',
-                    border: '1px solid var(--accent-light)', color: 'var(--accent-light)',
-                    borderRadius: '20px', fontSize: '0.9rem', fontWeight: 500, transition: 'all 0.2s',
-                    background: 'transparent', cursor: 'pointer'
-                  }}
-                  onMouseOver={(e) => { e.currentTarget.style.background = 'var(--accent-light)'; e.currentTarget.style.color = '#000'; }}
-                  onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--accent-light)'; }}
+                  className="btn-sm btn-sm-accent"
                 >
                   {linkItem.label}
                 </button>
@@ -129,6 +139,9 @@ export default function DocumentGrid() {
             onClick={() => setSelectedDoc(null)}
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedDoc.title}
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -148,7 +161,9 @@ export default function DocumentGrid() {
               }}>
                 <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#fff' }}>{selectedDoc.title}</h3>
                 <button
+                  ref={closeButtonRef}
                   onClick={() => setSelectedDoc(null)}
+                  aria-label="Close document viewer"
                   style={{
                     background: 'transparent', border: 'none', color: '#ccc',
                     cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
