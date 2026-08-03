@@ -12,6 +12,7 @@ const projects = [
     tech: ['TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'Docker'],
     category: 'Full Stack',
     github: 'https://github.com/Marcos-sf/finance-dashboard',
+    demo: 'https://finance-dashboard-phi-flame.vercel.app/login',
   },
   {
     title: 'Agri Rental',
@@ -19,6 +20,7 @@ const projects = [
     tech: ['TypeScript', 'React', 'Node.js'],
     category: 'Full Stack',
     github: 'https://github.com/Marcos-sf/agri-rental',
+    demo: 'https://agri-rental-pied.vercel.app/',
   },
   {
     title: 'Smart Property Management',
