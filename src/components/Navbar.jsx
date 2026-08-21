@@ -61,7 +61,7 @@ export default function Navbar() {
       transition: 'all 0.3s ease'
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-1px' }}>NH.</a>
+        <a href="#" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-1px' }}>NKH.</a>
         
         {/* Desktop Nav */}
         <div style={{ display: 'none' }} className="desktop-links">

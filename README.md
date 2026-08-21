@@ -1,4 +1,4 @@
-# Nitin Hegde — Portfolio
+# Nitin Keshava Hegde — Portfolio
 
 Personal portfolio site built with React and Vite, showcasing my projects, education, and certifications.
 

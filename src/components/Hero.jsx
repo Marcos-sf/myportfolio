@@ -17,7 +17,7 @@ export default function Hero() {
           style={{ flex: '1 1 500px' }}
         >
           <p style={{ color: 'var(--accent-blue)', fontFamily: 'var(--font-heading)', fontSize: '1.2rem', marginBottom: '1rem', fontWeight: 500 }}>Hi, I'm</p>
-          <h1 style={{ fontSize: 'clamp(3.5rem, 8vw, 5.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '0.5rem' }}>Nitin Hegde</h1>
+          <h1 style={{ fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '0.5rem' }}>Nitin Keshava Hegde</h1>
           <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', color: 'var(--text-secondary)', marginBottom: '1.5rem', fontWeight: 600 }}>Full Stack Developer</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', marginBottom: '2.5rem' }}>
             I build modern, scalable web applications with a focus on seamless user experiences, premium design, and robust backend architectures.
@@ -36,7 +36,7 @@ export default function Hero() {
         >
           <img 
             src={profileImg} 
-            alt="Nitin Hegde" 
+            alt="Nitin Keshava Hegde"
             style={{
                width: '100%', maxWidth: '280px', borderRadius: '50%', 
                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',

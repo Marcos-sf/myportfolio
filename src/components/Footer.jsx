@@ -50,7 +50,7 @@ export default function Footer() {
         </motion.div>
 
         <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '0.9rem' }}>
-          &copy; {new Date().getFullYear()} Nitin Hegde.
+          &copy; {new Date().getFullYear()} Nitin Keshava Hegde.
         </p>
       </div>
     </footer>
