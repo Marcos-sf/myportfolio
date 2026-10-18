@@ -67,7 +67,7 @@ export default function Hero() {
               />
             </div>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.9rem', letterSpacing: '0.03em' }}>
-              N. HEGDE
+              NITIN KESHAVA HEGDE
             </span>
           </div>
         </motion.div>

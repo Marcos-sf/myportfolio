@@ -6,11 +6,19 @@ const experienceData = [
     period: "Aug 2026 — Present",
     role: "Software Developer Trainee",
     company: "WeZake",
-    highlights: [
-      "Developing backend features for a Learning Management System (LMS) using the Frappe Framework and Python.",
-      "Building and maintaining Vue.js frontend components for the LMS platform.",
-      "Collaborating within a cross-functional team to ship production-ready features end-to-end."
-    ]
+    summary: "Collaborating within a cross-functional team to ship production-ready features end-to-end, across two parallel products.",
+    projects: [
+      {
+        name: "LMS Platform",
+        description: "Developing backend features and maintaining the Vue.js frontend for a Learning Management System.",
+        tech: ["Frappe Framework", "Vue.js", "Python"],
+      },
+      {
+        name: "Worddoc",
+        description: "A publishing and discovery platform for medical students to publish and find journals and thesis, with 7 tools integrated into the workflow — 5 of them AI-assisted.",
+        tech: ["Next.js", "Node.js", "Express", "Supabase"],
+      },
+    ],
   }
 ];
 
@@ -44,11 +52,21 @@ export default function Experience() {
             <div className="glass-card">
               <h3 style={{ fontSize: '1.4rem', marginBottom: '0.4rem' }}>{item.role}</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '1rem', fontWeight: 500 }}>{item.company}</p>
-              <ul style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', paddingLeft: '20px' }}>
-                {item.highlights.map((point, i) => (
-                  <li key={i} style={{ marginBottom: '0.5rem', listStyle: 'disc' }}>{point}</li>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>{item.summary}</p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {item.projects.map((project) => (
+                  <div key={project.name} style={{ borderTop: '1px solid var(--card-border)', paddingTop: '1.25rem' }}>
+                    <h4 style={{ fontSize: '1rem', marginBottom: '0.4rem', color: 'var(--text-primary)' }}>{project.name}</h4>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.8rem' }}>{project.description}</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                      {project.tech.map((t) => (
+                        <span key={t} className="mono-tag">{t}</span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </motion.div>
         ))}
