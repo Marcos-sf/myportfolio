@@ -61,21 +61,23 @@ export default function Navbar() {
       transition: 'all 0.3s ease'
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-1px' }}>NKH.</a>
-        
+        <a href="#" aria-label="Home" style={{ fontFamily: 'var(--font-mono)', fontSize: '1.15rem', color: 'var(--text-primary)' }}>
+          <span style={{ color: 'var(--accent)' }}>&lt;</span>NKH<span style={{ color: 'var(--accent)' }}>/&gt;</span>
+        </a>
+
         {/* Desktop Nav */}
         <div style={{ display: 'none' }} className="desktop-links">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} style={{
               fontWeight: 500, fontSize: '0.95rem', alignSelf: 'center', transition: 'color 0.2s',
-              color: activeSection === link.href.slice(1) ? 'var(--accent-blue)' : 'var(--text-primary)'
+              color: activeSection === link.href.slice(1) ? 'var(--accent)' : 'var(--text-primary)'
             }}>{link.name}</a>
           ))}
           <a href="#contact" style={{
             padding: '0.5rem 1.2rem',
-            background: 'linear-gradient(135deg, var(--accent-light), var(--accent-blue))',
-            color: '#000', fontWeight: 600, borderRadius: '20px', fontSize: '0.9rem'
-          }}>Contact Me</a>
+            background: 'var(--accent)',
+            color: 'var(--bg-primary)', fontWeight: 600, borderRadius: '8px', fontSize: '0.9rem'
+          }}>Contact</a>
           <button
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
@@ -128,10 +130,10 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              style={{ color: activeSection === link.href.slice(1) ? 'var(--accent-blue)' : 'var(--text-primary)' }}
+              style={{ color: activeSection === link.href.slice(1) ? 'var(--accent)' : 'var(--text-primary)' }}
             >{link.name}</a>
           ))}
-          <a href="#contact" onClick={() => setIsOpen(false)} style={{ color: 'var(--accent-blue)' }}>Contact Me</a>
+          <a href="#contact" onClick={() => setIsOpen(false)} style={{ color: 'var(--accent)' }}>Contact</a>
         </div>
       </div>
     </nav>

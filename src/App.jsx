@@ -1,4 +1,5 @@
 import React from 'react';
+import { MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Experience from './components/Experience';
@@ -10,9 +11,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <>
-      <div className="bg-shape shape-1"></div>
-      <div className="bg-shape shape-2"></div>
+    <MotionConfig reducedMotion="user">
       <Navbar />
       <Hero />
       <Experience />
@@ -21,7 +20,7 @@ function App() {
       <EducationJourney />
       <DocumentGrid />
       <Footer />
-    </>
+    </MotionConfig>
   );
 }
 

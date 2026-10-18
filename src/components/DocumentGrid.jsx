@@ -13,13 +13,13 @@ const documents = [
     title: "MCA Marks Card",
     description: "Post Graduation Transcripts and Grades.",
     link: "assets/mca_marks.pdf",
-    icon: <ScrollText size={32} color="var(--accent-light)" />
+    icon: <ScrollText size={32} color="var(--accent-strong)" />
   },
   {
     title: "BCA Marks Card",
     description: "Under Graduation Transcripts and Grades.",
     link: "assets/bca_marks.pdf",
-    icon: <ScrollText size={32} color="var(--accent-light)" />
+    icon: <ScrollText size={32} color="var(--accent-strong)" />
   },
   {
     title: "Certifications",
@@ -28,7 +28,7 @@ const documents = [
       { label: "Professional", url: "assets/certification_professional.pdf" },
       { label: "Standard", url: "assets/certification.pdf" }
     ],
-    icon: <Award size={32} color="#ffb86c" />
+    icon: <Award size={32} color="var(--accent)" />
   }
 ];
 
@@ -61,39 +61,39 @@ export default function DocumentGrid() {
 
   return (
     <section id="documents" style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
-      <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
+      <motion.h2
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
         className="section-title"
       >
-        Documents & <span>Certifications</span>
+        Documents & Certifications
       </motion.h2>
-      <motion.p 
+      <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{ textAlign: 'center', color: 'var(--text-secondary)', marginTop: '-2rem', marginBottom: '4rem' }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}
       >
         Verified academic credentials and professional achievements.
       </motion.p>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
         {documents.map((doc, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.4, delay: index * 0.08 }}
             className="glass-card"
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1.2rem' }}
           >
             <div style={{
-              width: '60px', height: '60px', borderRadius: '12px', background: 'rgba(255,255,255,0.03)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-blue)'
+              width: '52px', height: '52px', borderRadius: '8px', border: '1px solid var(--card-border)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)'
             }}>
               {doc.icon}
             </div>
@@ -147,29 +147,28 @@ export default function DocumentGrid() {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               style={{
                 width: '100%', maxWidth: '1000px', height: '100%', maxHeight: '800px',
-                backgroundColor: 'var(--bg-secondary)', borderRadius: '16px',
+                backgroundColor: 'var(--surface)', borderRadius: '10px',
                 overflow: 'hidden', display: 'flex', flexDirection: 'column',
-                position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
-                border: '1px solid rgba(255,255,255,0.1)'
+                position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                border: '1px solid var(--card-border)'
               }}
               onClick={(e) => e.stopPropagation()}
             >
               <div style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                padding: '1rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)',
-                backgroundColor: '#1E1E24' // Default header color, change if needed via css variables
+                padding: '1rem 1.5rem', borderBottom: '1px solid var(--card-border)',
               }}>
-                <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#fff' }}>{selectedDoc.title}</h3>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--text-primary)' }}>{selectedDoc.title}</h3>
                 <button
                   ref={closeButtonRef}
                   onClick={() => setSelectedDoc(null)}
                   aria-label="Close document viewer"
                   style={{
-                    background: 'transparent', border: 'none', color: '#ccc',
+                    background: 'transparent', border: 'none', color: 'var(--text-secondary)',
                     cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     padding: '0.5rem', borderRadius: '50%', transition: 'background 0.2s'
                   }}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-secondary)'}
                   onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   <X size={24} />

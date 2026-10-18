@@ -58,7 +58,19 @@ const projects = [
     category: 'Case Study',
     github: 'https://github.com/Marcos-sf/vedantu',
   },
+  {
+    title: 'Satyanarayana Leaf Cup',
+    description: 'Customer storefront and admin prototype for an areca leaf plate and cup manufacturer, with automatic bulk pricing tiers, a pickup/delivery booking flow, and a mock operations dashboard.',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    category: 'Full Stack',
+  },
 ];
+
+function statusFor(project) {
+  if (project.demo) return { label: 'Shipped', live: true };
+  if (project.github) return { label: 'Prototype', live: false };
+  return { label: 'Internal', live: false };
+}
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -70,25 +82,25 @@ export default function Projects() {
   return (
     <section id="projects" style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
         className="section-title"
       >
-        Featured <span>Projects</span>
+        Featured Projects
       </motion.h2>
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{ textAlign: 'center', color: 'var(--text-secondary)', marginTop: '-2rem', marginBottom: '3rem' }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem' }}
       >
-        A selection of things I've built, several improvised with Claude Code.
+        {projects.length} projects I've built, several improvised with Claude Code.
       </motion.p>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+      <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
         {filters.map((f) => (
           <button
             key={f}
@@ -102,60 +114,69 @@ export default function Projects() {
 
       <motion.div
         layout
-        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}
+        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}
       >
         <AnimatePresence mode="popLayout">
-          {filtered.map((project) => (
-            <motion.div
-              key={project.title}
-              layout
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
-              whileHover={{ y: -6 }}
-              className="glass-card"
-              style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-            >
-              <h3 style={{ fontSize: '1.25rem' }}>{project.title}</h3>
-
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', flex: 1 }}>
-                {project.description}
-              </p>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {project.tech.map((t) => (
-                  <span key={t} style={{
-                    fontSize: '0.75rem', color: 'var(--text-secondary)',
-                    background: 'rgba(255,255,255,0.05)', borderRadius: '8px', padding: '0.25rem 0.6rem',
-                  }}>
-                    {t}
+          {filtered.map((project) => {
+            const status = statusFor(project);
+            return (
+              <motion.div
+                key={project.title}
+                layout
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="glass-card"
+                style={{
+                  display: 'flex', flexDirection: 'column', gap: '1rem',
+                  borderTop: '2px solid var(--accent)',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <h3 style={{ fontSize: '1.2rem' }}>{project.title}</h3>
+                  <span className={`status-chip ${status.live ? 'live' : ''}`}>
+                    <span className="dot" /> {status.label}
                   </span>
-                ))}
-              </div>
+                </div>
 
-              <div style={{ display: 'flex', gap: '0.8rem', marginTop: '0.5rem' }}>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-sm btn-sm-outline"
-                >
-                  <Github size={16} /> Code
-                </a>
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-sm btn-sm-accent"
-                  >
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ))}
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', flex: 1 }}>
+                  {project.description}
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {project.tech.map((t) => (
+                    <span key={t} className="mono-tag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div style={{ display: 'flex', gap: '0.8rem', marginTop: '0.5rem' }}>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-sm btn-sm-outline"
+                    >
+                      <Github size={16} /> Code
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-sm btn-sm-accent"
+                    >
+                      <ExternalLink size={16} /> Live Demo
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </motion.div>
     </section>

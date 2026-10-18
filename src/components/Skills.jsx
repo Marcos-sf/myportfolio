@@ -49,20 +49,20 @@ export default function Skills() {
   return (
     <section id="skills" style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
         className="section-title"
       >
-        Skills & <span>Tools</span>
+        Skills & Tools
       </motion.h2>
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{ textAlign: 'center', color: 'var(--text-secondary)', marginTop: '-2rem', marginBottom: '3rem' }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem' }}
       >
         Technologies I reach for when building full stack applications.
       </motion.p>
@@ -71,21 +71,21 @@ export default function Skills() {
         {skillGroups.map((group, groupIndex) => (
           <motion.div
             key={group.category}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
+            transition={{ duration: 0.4, delay: groupIndex * 0.08 }}
             className="glass-card"
           >
-            <h3 style={{ fontSize: '1.1rem', marginBottom: '1.2rem', color: 'var(--accent-light)' }}>
+            <h3 style={{ fontSize: '1rem', marginBottom: '1.2rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
               {group.category}
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
               {group.skills.map((skill) => (
-                <div key={skill.name} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                  <span style={{ fontSize: '1.3rem', display: 'flex' }}>{skill.icon}</span>
-                  <span style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>{skill.name}</span>
-                </div>
+                <span key={skill.name} className="mono-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-primary)' }}>
+                  <span style={{ fontSize: '1rem', display: 'flex' }}>{skill.icon}</span>
+                  {skill.name}
+                </span>
               ))}
             </div>
           </motion.div>
